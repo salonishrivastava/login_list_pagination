@@ -5,6 +5,7 @@ import 'package:loginapi/list_data/ListOfData.dart';
 import 'package:loginapi/login/bloc/login_event.dart';
 import 'package:loginapi/login/bloc/login_state.dart';
 
+import '../dismissble_list_view/dissmissble_onleftswipe_list.dart';
 import 'bloc/login_bloc.dart';
 
 class LoginPage extends StatefulWidget {
@@ -83,9 +84,32 @@ class _LoginPageState extends State<LoginPage> {
                         );
                       },
 
-                    )
+                    ),
+                    SizedBox(height: 12,),
+                InkResponse(onTap: () {
 
-              ],),),
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                        return const DismissbleList() ;
+                      },));
+
+
+                },
+                  child: Container(width: 200,height: 55,
+                    alignment: Alignment.center,
+                    child: Text("Dismissble List show",
+                      style: TextStyle(color: Colors.white,
+                          fontSize: 14,
+                          fontWeight:FontWeight.w600),),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.redAccent),),
+                )
+
+              ],)
+
+
+                ,),
             ),
           )
 
