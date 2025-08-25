@@ -15,7 +15,8 @@ class _DismissbleListState extends State<DismissbleList> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(body: ListView.builder(
+    return SafeArea(child: Scaffold(
+      body: ListView.builder(
       itemCount: list.length,
       itemBuilder: (context, index) {
       return Dismissible(

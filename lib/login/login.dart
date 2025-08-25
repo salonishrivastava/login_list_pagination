@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loginapi/list_data/ListOfData.dart';
+import 'package:loginapi/list_data/list_of_data.dart';
+import 'package:loginapi/local_db/list_of_students.dart';
 import 'package:loginapi/login/bloc/login_event.dart';
 import 'package:loginapi/login/bloc/login_state.dart';
 
@@ -104,7 +105,29 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Colors.redAccent),),
-                )
+                ),
+
+
+                    SizedBox(height: 12,),
+                    InkResponse(onTap: () {
+
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return const ListOfStudents() ;
+                          },));
+
+
+                    },
+                      child: Container(width: 200,height: 55,
+                        alignment: Alignment.center,
+                        child: Text("Database list add delete",
+                          style: TextStyle(color: Colors.white,
+                              fontSize: 14,
+                              fontWeight:FontWeight.w600),),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.redAccent),),
+                    )
 
               ],)
 
