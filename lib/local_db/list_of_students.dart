@@ -24,9 +24,50 @@ class _ListOfStudentsState extends State<ListOfStudents> {
     });
   }
 
-  addToList() async {
-    await DbHandler().insertData(Student(name: "sonaiaa", age: "25"));
+  addToList(String name, String age) async {
+    await DbHandler().insertData(Student(name: name, age: age));
     fetchList();
+  }
+
+  dialogShowForAdd(){
+    TextEditingController nameEditingController= TextEditingController();
+    TextEditingController ageEditingController= TextEditingController();
+    showModalBottomSheet(
+      context: context,
+     isScrollControlled: true, // important
+      builder: (context) {
+        return Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(height: 12,),
+                Text("ADD new sudent here"),
+                SizedBox(height: 12,),
+                TextField(controller: nameEditingController,
+                  decoration: InputDecoration( hintText: "name enter here"),),
+                TextField(controller: ageEditingController,
+                    decoration :InputDecoration(hintText: "age here")),
+                SizedBox(height: 12,),
+                ElevatedButton(
+                  onPressed: () {
+                    addToList(nameEditingController.text,ageEditingController.text);
+                    Navigator.pop(context);
+                  },
+                  child: Text("ADD"),
+                ),
+                SizedBox(height: 52,),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+
+
   }
 
 @override
@@ -36,13 +77,16 @@ class _ListOfStudentsState extends State<ListOfStudents> {
   }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return SafeArea(
+        child: Scaffold(
+          resizeToAvoidBottomInset: true,
       bottomNavigationBar: BottomNavigationBar(
         onTap: (value) {
           print("$value");
           if(value == 0){
-            addToList();
-           // listOfStudents.add(Student(id: 2, name: "saloni2", age: "4"));
+            dialogShowForAdd();
+
+
           }else{
             if(listOfStudents.isNotEmpty){
              listOfStudents.removeLast();
