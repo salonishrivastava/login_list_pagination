@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loginapi/local_db/db_handler.dart';
 import 'package:loginapi/local_db/student_model.dart';
 
 class ListOfStudents extends StatefulWidget {
@@ -9,8 +10,30 @@ class ListOfStudents extends StatefulWidget {
 }
 
 class _ListOfStudentsState extends State<ListOfStudents> {
-  List<Student> listOfStudents=[Student(id: 1,name: "saloni",age: "28")];
+  List<Student> listOfStudents=[];
 
+  Future<void> init() async {
+   await DbHandler().dbHelper();
+   fetchList();
+  }
+
+  fetchList() async {
+    listOfStudents= await DbHandler().fetchListDB();
+    setState(() {
+
+    });
+  }
+
+  addToList() async {
+    await DbHandler().insertData(Student(name: "sonaiaa", age: "25"));
+    fetchList();
+  }
+
+@override
+  void initState() {
+  init();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
@@ -18,10 +41,12 @@ class _ListOfStudentsState extends State<ListOfStudents> {
         onTap: (value) {
           print("$value");
           if(value == 0){
-            listOfStudents.add(Student(id: 2, name: "saloni2", age: "4"));
+            addToList();
+           // listOfStudents.add(Student(id: 2, name: "saloni2", age: "4"));
           }else{
             if(listOfStudents.isNotEmpty){
-listOfStudents.removeLast();}
+             listOfStudents.removeLast();
+            }
           }
           setState(() {
 
