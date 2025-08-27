@@ -1,0 +1,83 @@
+Ques::: what i call api in flutter and want to stop at any time how to use to do that
+Ans:::: The http package doesn’t support cancelling a request directly.
+         But you can use http.Client and close it to stop ongoing requests.
+     http.Client? _client;
+    _client = http.Client();
+    _client?.close();
+    ////
+    👉 dio has built-in cancel tokens (recommended if you need cancellation often).
+     final Dio _dio = Dio();
+      CancelToken? _cancelToken;
+ --------------------------------------------------------------------------------
+ Ques::: can we call multiple fragments in same activity
+ ANS ::: WITH frame layouts Yes 👍 In Android you can have multiple Fragments in the same Activity
+  — that’s actually one of the main purposes of Fragments:
+  to build flexible UIs by combining multiple components inside a single Activity.
+
+ --------------------------------------------------------------------------------
+ Ques::: What is the difference between ConstraintLayout and RelativeLayout?
+ ANS ::: 👍RelativeLayout
+
+          Older layout (introduced before ConstraintLayout).
+
+          Allows positioning of child views relative to the parent or other sibling views.
+
+           <Button
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Click"
+                  android:layout_below="@id/title"
+                  android:layout_alignParentEnd="true" />
+
+         while   ConstraintLayout
+         Strong Studio support (drag-and-drop)
+ --------------------------------------------------------------------------------
+ Ques::::What is the difference between synchronous and asynchronous tasks in Android?
+        👍 1. Synchronous Tasks
+
+        Meaning: Tasks run one after another, in sequence.
+
+        Blocking: The current thread (like the Main/UI Thread) is blocked until the task finishes.
+
+    2. 2. Asynchronous Tasks
+
+    Meaning: Tasks run in the background thread, letting the UI thread stay free.
+
+    Non-blocking: App stays smooth while waiting.
+
+    How in Android:
+
+    Kotlin Coroutines (launch, async, withContext)
+
+    Old way: AsyncTask (deprecated)
+ --------------------------------------------------------------------------------
+Ques:::: 8. What is the difference between dp, sp, and px in Android?
+
+ Ans::::  👍 dp (density-independent pixels) → Used for UI layout sizes (scales with screen density).
+
+        sp (scale-independent pixels) → Used for text sizes (scales with user’s font settings).
+ --------------------------------------------------------------------------------
+ Ques::::   Activities go through stages like human life:
+
+         onCreate() → called when Activity is created (setup UI here).
+
+         onStart() → activity becomes visible.
+
+         onResume() → activity is in foreground & interactive.
+
+         onPause() → another screen is in front.
+
+         onStop() → activity is hidden.
+
+         onDestroy() → activity is destroyed.
+ --------------------------------------------------------------------------------
+Ques::::
+--------------------------------------------------------------------------------
+Ques::::
+--------------------------------------------------------------------------------
+Ques::::
+ --------------------------------------------------------------------------------
+Ques::::
+ --------------------------------------------------------------------------------
+ Ques::::
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------
