@@ -71,9 +71,26 @@ Ques:::: 8. What is the difference between dp, sp, and px in Android?
 
          onDestroy() → activity is destroyed.
  --------------------------------------------------------------------------------
-Ques::::
+Ques::::20. What is the difference between LiveData and StateFlow?
+
+        LiveData → Lifecycle-aware, emits values to UI.
+
+        StateFlow → Modern alternative using Kotlin Flow, works better with Coroutines.
+
+        If you are working in legacy or Jetpack UI (XML) → use LiveData.
+
+        If you are using Jetpack Compose + Coroutines → prefer StateFlow.
 --------------------------------------------------------------------------------
-Ques::::
+Ques:::: Isolates in flutter
+
+    Sending multiple messages between isolates with ports
+    #to perform heavy task on main UI trade without lock the current actions using received port
+    send port
+    To do this, you can use some of the low-level isolate APIs that Isolate.run abstracts:
+
+    Isolate.spawn() and Isolate.exit()
+    ReceivePort and SendPort
+    SendPort.send() method
 --------------------------------------------------------------------------------
 Ques::::
  --------------------------------------------------------------------------------

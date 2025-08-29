@@ -75,6 +75,7 @@ class _ListOfStudentsState extends State<ListOfStudents> {
   init();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
