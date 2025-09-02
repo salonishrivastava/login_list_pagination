@@ -8,38 +8,24 @@ class AnimatedListExample extends StatefulWidget {
   const AnimatedListExample({super.key});
 
   @override
-  State<AnimatedListExample> createState() => _AnimatedListExampleState();
+  State createState() => MyStateClass();
 }
 
-class _AnimatedListExampleState extends State<AnimatedListExample> {
-  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
-  final List<Color> _items = [];
+class MyStateClass extends State{
+  final GlobalKey<AnimatedListState> _listOfKey = GlobalKey<AnimatedListState>();
+  List<Color> _listOfColors=[];
 
-  // Random color generator
-  Color getRandomColor() {
-    Random random = Random();
+  Color generateRandomColors(){
+    Random r=Random();
     return Color.fromARGB(
-      255,
-      random.nextInt(256),
-      random.nextInt(256),
-      random.nextInt(256),
-    );
-  }
-
-  void _addItem() {
-    final newColor = getRandomColor();
-    final insertIndex = _items.length; // 👈 add at bottom
-    _items.insert(insertIndex, newColor);
-
-    _listKey.currentState!.insertItem(
-      insertIndex,
-      duration: const Duration(milliseconds: 500),
-    );
+        255,r.nextInt(256),
+        r.nextInt(256),
+        r.nextInt(256));
   }
 
   void _removeItem(int index) {
-    final removedColor = _items.removeAt(index);
-    _listKey.currentState!.removeItem(
+    final removedColor = _listOfColors.removeAt(index);
+    _listOfKey.currentState!.removeItem(
       index,
           (context, animation) => SizeTransition(
         sizeFactor: animation,
@@ -53,37 +39,32 @@ class _AnimatedListExampleState extends State<AnimatedListExample> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
+
     return Scaffold(
-      appBar: AppBar(title: const Text("AnimatedList (Items from Bottom)")),
-      body: AnimatedList(
-        key: _listKey,
-        initialItemCount: _items.length,
-        itemBuilder: (context, index, animation) {
-          return SizeTransition(
-            sizeFactor: animation,
-            child: GestureDetector(
-              onTap: () => _removeItem(index),
-              child: Container(
-                height: 80,
-                color: _items[index],
-                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                child: Center(
-                  child: Text(
-                    "Item ${index + 1}",
-                    style: const TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addItem,
-        child: const Icon(Icons.add),
-      ),
-    );
+        floatingActionButton: FloatingActionButton(child: Icon(Icons.add),onPressed: () {
+          print("ClicKK ${_listOfColors.length}");
+          var len =_listOfColors.length;
+          _listOfColors.insert(_listOfColors.length,generateRandomColors());
+
+          _listOfKey.currentState!.insertItem(len,duration:Duration(milliseconds: 1000));
+
+          setState(() {
+
+          });
+
+        },),
+        body: AnimatedList(key: _listOfKey,initialItemCount: _listOfColors.length,
+          itemBuilder: (context, index, animation) {
+            return SizeTransition(child: Container(
+                color: _listOfColors[index],
+                height:45,
+                margin:EdgeInsets.all(1)
+
+            ),sizeFactor: animation,);
+
+          },)
+    )
+    ;
   }
 }
