@@ -91,6 +91,21 @@ Ques:::: Isolates in flutter
     Isolate.spawn() and Isolate.exit()
     ReceivePort and SendPort
     SendPort.send() method
+
+
+    explain You don’t manually call Isolate.spawn() here.
+     Flutter’s compute is a shortcut for isolates.
+
+     like await compute(runHeavyLoop, null);
+
+     // ---- HEAVY FUNCTION ----
+     void runHeavyLoop(dynamic _) {
+       for (int i = 0; i < 100000000; i++) {
+         if (i % 10000000 == 0) {
+           log("Progress: $i");
+         }
+       }
+     }
 --------------------------------------------------------------------------------
 Ques::::
  --------------------------------------------------------------------------------

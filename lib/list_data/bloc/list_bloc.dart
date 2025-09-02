@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loginapi/list_data/bloc/list_event.dart';
 import 'package:loginapi/list_data/bloc/list_state.dart';
 import 'package:http/http.dart' as http;
-
 import '../model.dart';
+
 class ListBloc extends Bloc<ListEvent,ListState>{
   int page = 1;
   final int limit = 10;
