@@ -40,8 +40,10 @@ class _LoginPageState extends State<LoginPage> {
 
                     Text('Login Screen'),
                     SizedBox(height: 12,),
-                    TextField(controller: emailEditingController,decoration: InputDecoration( hintText: "email enter here"),),
-                    TextField(controller: passEditingController,decoration :InputDecoration(hintText: "passwords here")),
+                    TextField(controller: emailEditingController,
+                      decoration: InputDecoration( hintText: "email enter here"),),
+                    TextField(controller: passEditingController,
+                        decoration :InputDecoration(hintText: "passwords here")),
                     SizedBox(height: 12,),
                     BlocListener<LoginBloc,LoginState>(listener: (context, state) {
                       if(state is LoginSuccess){

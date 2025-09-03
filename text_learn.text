@@ -107,7 +107,27 @@ Ques:::: Isolates in flutter
        }
      }
 --------------------------------------------------------------------------------
-Ques::::
+Ques::::when you call an API in Flutter (Dart), there are many possible exceptions and errors
+
+   SocketException → No internet connection, DNS failure, server not reachable.
+
+        HttpException → Invalid HTTP response.
+
+        TimeoutException → Server took too long to respond.
+
+ try {
+   code to generate exceptions
+  } on SocketException {
+    print("❌ No Internet connection");
+  } on TimeoutException {
+    print("❌ Request timed out");
+  } on FormatException {
+    print("❌ Invalid JSON format");
+  } on HttpException {
+    print("❌ Invalid HTTP response");
+  } catch (e) {
+    print("❌ Unexpected error: $e");
+  }
  --------------------------------------------------------------------------------
 Ques::::
  --------------------------------------------------------------------------------
