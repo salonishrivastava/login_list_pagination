@@ -1,0 +1,401 @@
+# ADD two numbers
+
+
+void main(){
+  addFunction();
+}
+
+
+
+void addFunction(){
+  int a,b=1,c=2;
+  a= b+c;
+  print('addd $a');
+}
+
+--------------------------------------------------------
+import 'dart:io';
+void main(){
+  addFunction();
+}
+
+
+
+void addFunction(){
+  int a,b,c;
+ print("Enter any didgit");
+  a= int.parse(stdin.readLineSync()!);
+  print("Enter another Digit");
+b =int.parse(stdin.readLineSync()!);
+  c=a+b;
+  print("${c}");
+  
+}
+
+--------------------------------------------------------
+#smallest or largest number
+
+void main() {
+  List<int> numbers = [12, 5, 8, 130, 44, 2, 75];
+
+  int smallest = numbers[0];
+  int largest = numbers[0];
+
+  for (var number in numbers) {
+    if (number < smallest) {
+      smallest = number;
+    }
+    if (number > largest) {
+      largest = number;
+    }
+  }
+
+  print("Smallest number is: $smallest");
+  print("Largest number is: $largest");
+}
+
+
+---------------------------------------------------------------------
+#smallest or largest number get by indexx
+
+void main() {
+  List<int> numbers = [12, 5, 8, 130, 44, 2, 75];
+
+  // Sort the list in descending order
+  numbers.sort((a, b) => b.compareTo(a)); // descending
+
+  print("Sorted list (desc): $numbers");
+
+  // 1st largest
+  int largest = numbers[0];
+
+  // 2nd largest
+  int? secondLargest = numbers.length > 1 ? numbers[1] : null;
+
+  // 3rd largest
+  int? thirdLargest = numbers.length > 2 ? numbers[2] : null;
+
+  print("Largest: $largest");
+  print("Second Largest: $secondLargest");
+  print("Third Largest: $thirdLargest");
+
+ print("smallest ${numbers[numbers.length-1]}"); 
+}
+
+
+
+---------------------------------------------------------------------
+# sorting 
+
+void main() {
+  List<int> numbers = [12, 5, 8, 130, 44, 2, 75];
+
+  // Bubble sort (ascending)
+  for (int i = 0; i < numbers.length - 1; i++) {
+    for (int j = 0; j < numbers.length - 1 - i; j++) {
+      if (numbers[j] > numbers[j + 1]) {
+        // Swap
+        int temp = numbers[j];
+        numbers[j] = numbers[j + 1];
+        numbers[j + 1] = temp;
+      }
+    }
+  }
+
+  print("Sorted list is: $numbers");
+}
+
+Outputt>> [2, 5, 8, 12, 44, 75, 130] asending
+-----------------------------------------------------------------------------------------------------------------
+#Count the number of vowels in a string.
+void main() {
+  String input = "Flutter is Awesome";
+  int vowelCount = countVowels(input);
+  print("Total vowels: $vowelCount");
+}
+
+int countVowels(String str) {
+  int count = 0;
+  String vowels = "aeiouAEIOU";
+
+  for (int i = 0; i < str.length; i++) {
+    if (vowels.contains(str[i])) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+-----------------------------------------------------------------------------------------------------------------
+#Check if a string is a palindrome.
+
+
+void main() {
+  String input = "madam";
+
+  if (isPalindrome(input)) {
+    print("\"$input\" is a palindrome.");
+  } else {
+    print("\"$input\" is not a palindrome.");
+  }
+}
+
+bool isPalindrome(String str) {
+  String reversed = str.split('').reversed.join('');
+  return str == reversed;
+}
+
+
+
+
+🔍 Explanation:
+str.split('')
+Converts the string to a list of characters: "madam" → ['m', 'a', 'd', 'a', 'm']
+
+.reversed
+Reverses the list.
+
+.join('')
+Joins the reversed list back to a string: ['m', 'a', 'd', 'a', 'm'] → "madam"
+
+return str == reversed
+Compares the original string with the reversed one.
+
+
+
+🧪 Output:
+"madam" is a palindrome.
+
+-----------------------------------------------------------------------------------------------------------------
+
+#  without function reverse 
+void main() {
+  String input = "madam";
+
+  if (isPalindrome(input)) {
+    print("\"$input\" is a palindrome.");
+  } else {
+    print("\"$input\" is not a palindrome.");
+  }
+}
+
+bool isPalindrome(String str) {
+  int start = 0;
+  int end = str.length - 1;
+
+  while (start < end) {
+    if (str[start] != str[end]) {
+      return false;
+    }
+    start++;
+    end--;
+  }
+
+  return true;
+}
+
+public class PalindromeChecker {
+
+    public static void main(String[] args) {
+        String input = "madam";
+
+        if (isPalindrome(input)) {
+            System.out.println("\"" + input + "\" is a palindrome.");
+        } else {
+            System.out.println("\"" + input + "\" is not a palindrome.");
+        }
+    }
+
+    public static boolean isPalindrome(String str) {
+        int start = 0;
+        int end = str.length() - 1;
+
+        while (start < end) {
+            if (str.charAt(start) != str.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+}
+
+
+-----------------------------------------------------------------------------------------------------------------
+#Reverse a string.
+void main() {
+  String input = "flutter";
+  String reversed = "";
+
+  for (int i = input.length - 1; i >= 0; i--) {
+    reversed += input[i];
+  }
+
+  print("Original String: $input");
+  print("Reversed String: $reversed");
+}
+
+
+-----------------------------------------------------------------------------------------------------------------
+#Convert a string to uppercase/lowercase.
+void main() {
+  String input = "Flutter Is Fun";
+
+  String upper = input.toUpperCase();
+  String lower = input.toLowerCase();
+
+  print("Original String: $input");
+  print("Uppercase: $upper");
+  print("Lowercase: $lower");
+}
+
+-----------------------------------------------------------------------------------------------------------------
+#Count the number of words in a sentence. and reverse of it 
+void main(){
+  
+  String str="My Name is Saloni";
+  str=str.replaceAll(" ","");
+  print(" ${str}");
+int length= str.length-1;
+   print(" ${length}");
+  String reverseString='';
+  for(int i=length;i>=0;i--){
+    reverseString += str[i];
+  }
+  print("$reverseString");
+
+  
+}
+-----------------------------------------------------------------------------------------------------------------
+#Replace all spaces with underscores.
+void main(){
+  
+  String str="My Name is Saloni";
+
+
+
+ 
+  String reverseString='';
+  for(int i=0;i<str.length;i++){
+    if(str[i].contains(' ')){
+      reverseString += "_";
+    }else{
+       reverseString += str[i];
+    }
+   
+  }
+  print("$reverseString");
+
+  
+}
+-----------------------------------------------------------------------------------------------------------------
+#Check if two strings are anagrams.
+race	care
+om      mo
+mom     mom
+like wise all
+
+bool isAnagram(String a, String b) {
+  if (a.length != b.length) return false;
+
+  List<String> aChars = a.split('')..sort();
+  List<String> bChars = b.split('')..sort();
+
+  return aChars.join() == bChars.join();
+}
+
+void main() {
+  String str1 = "listen";
+  String str2 = "silent";
+
+  if (isAnagram(str1, str2)) {
+    print("\"$str1\" and \"$str2\" are anagrams.");
+  } else {
+    print("\"$str1\" and \"$str2\" are NOT anagrams.");
+  }
+}
+
+
+-----------------------------------------------------------------------------------------------------------------
+#Remove duplicate characters from a string.
+
+void main() {
+  String input = "programming";
+  String result = "";
+
+  for (int i = 0; i < input.length; i++) {
+    String char = input[i];
+    // If char is not already in result, add it
+    if (!result.contains(char)) {
+      result += char;
+    }
+  }
+
+  print("Original string: $input");
+  print("Without duplicates: $result");
+}
+
+-----------------------------------------------------------------------------------------------------------------
+# duplicate characters from a string count and replace with number like aa with 2 and bbbbb with 5.
+
+void main() {
+  String input = "ababcabc";
+
+  // Step 1: Sort the characters
+  List<String> chars = input.split('')..sort();
+  String sorted = chars.join();
+
+  // Step 2: Count consecutive duplicates
+  String result = "";
+  String result2 = "";
+  int count = 1;
+
+  for (int i = 1; i < sorted.length; i++) {
+    if (sorted[i] == sorted[i - 1]) {
+      count++;
+    } else {
+      result += "$count${sorted[i - 1]}";
+         result2 += "$count = ${sorted[i - 1]} ,";
+      count = 1;
+    }
+  }
+
+  // Add the last group
+  result += "$count${sorted[sorted.length - 1]}";
+    result2 += "$count = ${sorted[sorted.length - 1]}";
+
+  print("Original: $input");
+  print("Sorted  : $sorted");
+  print("Encoded : $result");
+    print("Encoded : $result2");
+}
+
+
+-----------------------------------------------------------------------------------------------------------------
+#/ Recursive call
+
+ void main() {
+  printNumbers(1);
+}
+
+void printNumbers(int num) {
+  if (num > 10) return; // Base case: stop at 10
+  print(num);
+  printNumbers(num + 1); // Recursive call
+}
+
+-----------------------------------------------------------------------------------------------------------------
+# recursion factorial number 
+void main() {
+  int number = 6;
+  int result = factorial(number);
+  print("Factorial of $number is: $result");
+}
+
+int factorial(int n) {
+  if (n <= 1) return 1;
+  return n * factorial(n - 1);
+}
