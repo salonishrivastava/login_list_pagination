@@ -419,3 +419,34 @@ Ans ::::  Add Firebase to Your Flutter Project
              }
 
  ---------------------------------------------------------------------------------------------------
+
+ QUES ::: how to remove reset commit that commited wrong
+ Ans :::: git reset --hard aeb3753dce497cfb1cdf989dae9ebca0ae98caaa^
+ your code will remove completly take back up before like zip
+---------------------------------------------------------------------------------------------
+In Git, the --force (or -f) flag means:
+👉 “push my local branch to the remote even if it will overwrite history there.”
+
+--force is dangerous in shared repos: it can delete other people’s work if they pushed commits after yours.
+
+Safer alternative: --force-with-lease
+
+git push origin main --force-with-lease
+ ------------------------------------------------------------------------------
+ #Service → long-running task (download music, play in background).
+   ❌ A normal Service stops if the app is killed.
+   ✅ A Foreground Service (with notification) keeps running even if the app is not open (used for music, tracking, etc.).
+
+ #BroadcastReceiver → event listener (network on/off, SMS received).
+ Incoming phone calls (ringing, answered, ended) in Android come under BroadcastReceiver.
+ in newer Android versions (O+), some implicit broadcasts are restricted to save battery.
+ You may need to use a JobScheduler or WorkManager.
+
+ #WorkManager → scheduled/guaranteed task (daily backup, analytics upload).
+
+ #IntentService → queued background tasks (process multiple downloads sequentially).
+ --------------------------------------------------------------
+ manifest defined broadcast works even app close
+ activity level broadcast work till activity life cycle
+ -----------------------------------------------------------------
+ -----------------------------------------------------------------
