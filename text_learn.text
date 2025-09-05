@@ -106,7 +106,7 @@ Ques:::: Isolates in flutter
          }
        }
      }
---------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 Ques::::when you call an API in Flutter (Dart), there are many possible exceptions and errors
 
    SocketException → No internet connection, DNS failure, server not reachable.
@@ -128,8 +128,134 @@ Ques::::when you call an API in Flutter (Dart), there are many possible exceptio
   } catch (e) {
     print("❌ Unexpected error: $e");
   }
- --------------------------------------------------------------------------------
-Ques::::
- --------------------------------------------------------------------------------
- Ques::::
+ -----------------------------------------------------------------------------------------------------------
+
+Ques:::: what is .env and how to read it.
+ (secure level or you can fetch apis from backend through get apis)
+
+ANS :::A .env file is a text file where you keep your environment variables (API keys, secrets,
+        base URLs, configs).
+        API_KEY=12345abcde
+        API_secret=12345abcde
+        like wise in this file Change API endpoint ,keys or feature flag without touching code.
+      1. flutter_dotenv: ^5.1.0 >>> add package.
+      2. flutter pub get >>>>> command run
+      3. In your project root, create a file called .env
+      4. Add .env to .gitignore so you don’t push secrets to GitHub.
+      5 . Load .env in main.dart
+          import 'package:flutter_dotenv/flutter_dotenv.dart';
+          await dotenv.load(fileName: ".env"); before runApp()
+      6.Access variables anywhere
+      final apiSecret = dotenv.env['API_secret'];
+      final apiKey  = dotenv.env['API_KEY'];
+
+ -----------------------------------------------------------------------------------------------------------
+
+ Ques:::: send data flutter to native and then on the basis of data show some data back
+ ANS:::: flutter END>>>>>>
+             static const MethodChannel _channel = MethodChannel('wrazzle_native_call_view');
+             final val data ={"point":"5"};
+             final bool sims = await _channel.invokeMethod('spendUserPointTapjoy', data);
+              return sims;
+          Native end>>>>>
+              new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), CHANNEL_name).
+                  setMethodCallHandler((call, result) -> {
+              if (call.method.equals("spendUserPointTapjoy")) {
+                  int balance = call.argument("point"); // called data here
+              }
+              }
  ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ques:::: what is linter how you do tree shaking
+ANS:::: Lint packages provide rules for code style, best practices, and error prevention in Dart & Flutter projects.
+             it will give warning and errors and you need to resolve it forcefully
+             during development phase itself
+             flutter_lints: ^4.0.0 >>>>>> Add package
+             analysis_options.yaml >>> add  tp project root, create or edit
+             contains >>
+                     include: package:flutter_lints/flutter.yaml
+
+                        linter:
+                          rules:
+                            # Prevent keeping unused imports
+                            unused_import: error
+
+                            # (optional) other useful rules
+                            avoid_print: true
+                            prefer_const_constructors: true
+                            unnecessary_this: true
+
+             flutter analyze >>> command to show errors now
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ques::::one-liner difference for each Flutter CI/CD tool:
+ANS::::Codemagic → Flutter-focused CI/CD platform with built-in mobile build, test, and deploy pipelines.
+
+       Shorebird → Hot-update service for Flutter apps (push code changes to users without full app store resubmission).
+
+       Frontlane → Lightweight CI/CD tool built specifically for Flutter projects (simpler than Codemagic).
+
+       GitHub Actions → General CI/CD automation for any project (including Flutter) inside GitHub repos.
+
+       we can upload screenshots in automatic build in codemagic and frontlane using fastlane for ios AND
+       screengrab for in workflow
+
+
+       =====In GitHub Actions===== root <> your-project/.github/workflows/<workflow-name>.yml
+
+       By default → all jobs run in parallel 🏃🏽‍♂️🏃🏽‍♀️ simultaneously
+
+       If you want one job to run after another, you use "needs":
+       like below
+       jobs:
+         test:
+           runs-on: ubuntu-latest
+           steps:
+             - run: flutter test
+
+         build:
+           needs: test   # 👈 build runs only after test finishes
+           runs-on: ubuntu-latest
+           steps:
+             - run: flutter build apk --release
+
+       =====In Codemagic=====
+
+            Each workflow runs separately.Codemagic doesn’t have a jobs: concept like GitHub Actions. Instead:
+
+            Inside a workflow, the scripts run sequentially (one by one).
+
+            To run parallel pipelines, you define multiple workflows in codemagic.yaml.
+
+            workflows:
+              android_build:
+                name: Android Build
+                max_build_duration: 60
+                instance_type: linux_x2
+                scripts:
+                  - flutter pub get
+                  - flutter build apk --release
+                artifacts:
+                  - build/app/outputs/flutter-apk/app-release.apk
+
+              ios_build:
+                name: iOS Build
+                max_build_duration: 60
+                instance_type: mac_mini_m2
+                scripts:
+                  - flutter pub get
+                  - flutter build ipa --release
+                artifacts:
+                  - build/ios/ipa/*.ipa
+            👉 Here you have two workflows:
+
+            android_build
+
+            ios_build
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ques::::
+ANS::::
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ques::::
+ANS:::::
