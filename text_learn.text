@@ -1,5 +1,5 @@
 
-Ques::: what i call api in flutter and want to stop at any time how to use to do that
+Ques::: how i call api in flutter and want to stop at any time how to use to do that
 Ans:::: The http package doesn’t support cancelling a request directly.
          But you can use http.Client and close it to stop ongoing requests.
      http.Client? _client;
@@ -165,9 +165,25 @@ ANS :::A .env file is a text file where you keep your environment variables (API
                   int balance = call.argument("point"); // called data here
               }
               }
+
+  ###
+  Ques:::: embedding a native Android view (XML/Java/Kotlin) inside Flutter.
+  ANS::::: AndroidView(viewType: 'native-text-view') in Flutter
+
+            Finds registerViewFactory("native-text-view", ...) in Android code
+
+            Renders the native Android TextView inside Flutter UI
+
+            ✅ In short:
+
+            Use AndroidView widget in Flutter.
+
+            Register your custom native view in Android using PlatformViewFactory.
+
  ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 Ques:::: what is linter how you do tree shaking
-ANS:::: Lint packages provide rules for code style, best practices, and error prevention in Dart & Flutter projects.
+ANS:::: Lint packages provide rules for code style, best practices, and error prevention
+         in Dart & Flutter projects.
              it will give warning and errors and you need to resolve it forcefully
              during development phase itself
              flutter_lints: ^4.0.0 >>>>>> Add package

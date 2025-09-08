@@ -100,7 +100,8 @@ class _LoginPageState extends State<LoginPage> {
 
 
                 },
-                  child: Container(width: 200,height: 55,
+                  child: Container(
+                    width: 200,height: 55,
                     alignment: Alignment.center,
                     child: Text("Dismissble List show",
                       style: TextStyle(color: Colors.white,
