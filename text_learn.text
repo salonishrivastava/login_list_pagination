@@ -465,4 +465,134 @@ git push origin main --force-with-lease
  manifest defined broadcast works even app close
  activity level broadcast work till activity life cycle
  -----------------------------------------------------------------
- -----------------------------------------------------------------
+ QUES::::  FCM steps
+ Answer:: Go to Firebase Console
+          .
+
+          Create a new project.
+
+          Add an Android app (package name must match applicationId in android/app/build.gradle).
+
+          Download the google-services.json file → put it in android/app/.
+
+          Add an iOS app (bundle ID must match in Xcode).
+
+          Download the GoogleService-Info.plist file → put it in ios/Runner/.
+
+            await Firebase.initializeApp();
+            String? token = await FirebaseMessaging.instance.getToken();
+
+            // Foreground
+            FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+              print("Foreground message: ${message.notification?.title}");
+            });
+
+
+
+            >>When sending a notification (from Firebase Console or your backend), include a custom data field:
+                {
+                  "to": "DEVICE_FCM_TOKEN",
+                  "notification": {
+                    "title": "Order Update",
+                    "body": "Your order has been shipped!"
+                  },
+                  "data": {
+                    "screen": "OrderScreen",
+                    "orderId": "12345"
+                  }
+                }
+                code
+                 // When tapped and app opened
+                            FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+                              print("Notification clicked: ${message.notification?.title}");
+                                if (message.data['screen'] == "OrderScreen") {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => OrderScreen(orderId: message.data['orderId']),
+                                    ),
+                                  );
+                                }
+                            });
+
+
+              Exactly 👍 That’s the default behavior of FCM on Android & iOS →
+
+              Background / terminated → system tray notification is shown automatically.
+
+               flutter_local_notifications: ^17.2.2
+
+
+               final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+                   FlutterLocalNotificationsPlugin();
+
+
+                     const AndroidNotificationDetails androidPlatformChannelSpecifics =
+                         AndroidNotificationDetails(
+                       'default_channel_id',
+                       'Default',
+                       importance: Importance.max,
+                       priority: Priority.high,
+                       showWhen: true,
+                     );
+FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+                     const NotificationDetails platformChannelSpecifics =
+                         NotificationDetails(android: androidPlatformChannelSpecifics);
+
+                     flutterLocalNotificationsPlugin.show(
+                       0,
+                       message.notification?.title ?? 'No Title',
+                       message.notification?.body ?? 'No Body',
+                       platformChannelSpecifics,
+                       payload: message.data['screen'], // you can pass custom data
+                     );
+
+                     }
+ ----------------------------------------------------------------------------------
+ QUES::::  Data binding vs View binding
+ Answer::
+       ####View Binding → Only replaces findViewById, no XML expressions.
+ONLY REPPLACE THE FINDVIEWBYiD
+          binding = ActivityMainBinding.inflate(layoutInflater)
+               setContentView(binding.root)
+
+               // Directly use views
+               binding.textView.text = "Hello ViewBinding"
+
+      ###   Data Binding → Binds UI ↔ data directly in XML with expressions (MVVM-friendly).
+      STEP1>>>>>>>>>>>>>>>>>>
+         android {
+         buildFeatures {
+        dataBinding true
+         }
+         }
+
+         STEP1>>>>>>>>>>>>>>>>>>
+         <layout xmlns:android="http://schemas.android.com/apk/res/android">
+             <data>
+                 <variable
+                     name="user"
+                     type="com.example.User" />
+             </data>
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical">
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@{user.name}" />
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@{user.email}" />
+             </LinearLayout>
+         </layout>
+
+            STEP1>>>>>>>>>>>>>>>>>>
+     binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+ ----------------------------------------------------------------------------------
+QUES::::
