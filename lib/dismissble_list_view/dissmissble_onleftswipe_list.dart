@@ -21,7 +21,6 @@ class _DismissbleListState extends State<DismissbleList> {
       itemBuilder: (context, index) {
       return Dismissible(
         key: Key(list[index]),
-
         child: Container(height: 65,
           margin:EdgeInsets.fromLTRB(0, 4, 0, 2),
           width: MediaQuery.of(context).size.width,

@@ -1,0 +1,316 @@
+start printing :
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+a
+bb
+ccc
+dddd
+eeeee
+
+public class Main
+{
+	public static void main(String[] args) {
+	    int n=5;
+	    char ch='a';
+	for (int i=1;i<=5;i++){
+	    
+	
+	    
+	    
+	    for (int j=1;j<=( i );j++){
+	    System.out.print(ch);
+
+
+	}
+	    System.out.println();
+	    	    ch++;
+	}
+	
+	}
+}
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+a
+ab
+abc
+abcd
+abcde
+public class Main
+{
+	public static void main(String[] args) {
+	    int n=5;
+
+	for (int i=1;i<=5;i++){
+	    
+		    char ch='a';
+	    
+	    
+	    for (int j=1;j<=( i );j++){
+	    System.out.print(ch);
+	    ch++;
+
+	}
+	    System.out.println();
+	}
+	
+	}
+}
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  *
+ * *
+* * *
+
+public class Main
+{
+	public static void main(String[] args) {
+		for(int i=1;i<=5;i++){
+		    
+		    for(int k=1;k<=5-i;k++){
+		         System.out.print(" ");
+		    }
+		    
+		    for(int j=1;j<=i;j++){
+		        System.out.print("* ");
+		    }
+		    
+		    System.out.print("\n");
+		}
+	}
+}
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  *
+ * *
+* * *
+ * *
+  *
+
+public class Main {
+    public static void main(String[] args) {
+        int n = 5;
+
+        // Upper half of the diamond
+       for(int i=1;i<=5;i++){
+		    
+		    for(int k=1;k<=5-i;k++){
+		         System.out.print(" ");
+		    }
+		    
+		    for(int j=1;j<=i;j++){
+		        System.out.print("* ");
+		    }
+		    
+		    System.out.print("\n");
+		}
+
+        // Lower half of the diamond
+        for (int i = 1; i  <  n; i++) { ///less one line
+            // Print spaces
+            for (int k = 0; k  <  i; k++) {
+                System.out.print(" ");
+            }
+            // Print asterisks
+            for (int j = n - 1; j  >= i; j--) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+*
+**
+***
+****
+*****
+
+public class Main
+{
+	public static void main(String[] args) {
+		for(int i=1;i<=5;i++){
+		    
+		    for(int j=1;j<=i;j++){
+		        System.out.print("*");
+		    }
+		    System.out.print("\n");
+		}
+	}
+}
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+*****
+****
+***
+**
+*
+
+public class Main
+{
+	public static void main(String[] args) {
+		for(int i=1;i<=5;i++){
+		    
+		    for(int j=5;j>=i;j--){
+		        System.out.print("*");
+		    }
+		    System.out.print("\n");
+		}
+	}
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    *    
+   ***   
+  *****  
+ ******* 
+*********
+public class Main
+{
+	public static void main(String[] args) {
+	    int n=5;
+	for (int i=1;i<=5;i++){
+	    
+	       for (int k=i;k<=n-1;k++){
+	    System.out.print(" ");
+	}
+	    
+	    
+	    for (int j=1;j<=(2 * i - 1);j++){
+	    System.out.print("#");
+
+	}
+	    System.out.println();
+	}
+	
+	}
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ANIMAted list view 
+
+import 'package:flutter/material.dart';
+import 'dart:math';
+
+void main() {
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: Home()));
+}
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final GlobalKey<AnimatedListState> listKey = GlobalKey<AnimatedListState>();
+  int noOfItems = 0;
+  List colors = [
+    Colors.red,
+    Colors.yellow,
+    Colors.lightBlueAccent,
+    Colors.pinkAccent,
+    Colors.deepOrangeAccent,
+    Colors.green,
+  ];
+  Random random = Random();
+
+  Widget _buildItem(
+    BuildContext context,
+    int index,
+    animation, {
+    double x = -1,
+  }) {
+    return SlideTransition(
+      position: Tween<Offset>(
+        begin: Offset(x, 0),
+        end: Offset.zero,
+      ).animate(animation),
+      child: Card(
+        color: colors[random.nextInt(6)],
+        child: ListTile(
+          leading: FlutterLogo(
+            style: FlutterLogoStyle.markOnly,
+            //duration: Duration(seconds: 3),
+          ),
+          title: Text(items[index]),
+        ),
+      ),
+    );
+  }
+
+  List<String> items = [];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      //floatingActionButton:
+      appBar: AppBar(title: Center(child: Text('Animated List Demo'))),
+      body: Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.78,
+            child: AnimatedList(
+              key: listKey,
+              initialItemCount: items.length,
+              itemBuilder: (context, index, animation) {
+                return _buildItem(context, index, animation);
+              },
+            ),
+          ),
+          SizedBox(height: 10.0),
+          Container(
+            padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                FloatingActionButton(
+                  onPressed: () {
+                    setState(() {
+                      noOfItems++;
+                      listKey.currentState!.insertItem(
+                        items.length,
+                        duration: Duration(milliseconds: 600),
+                      );
+                      items = []
+                        ..add('Item #' + '$noOfItems')
+                        ..addAll(items);
+                    });
+                  },
+                  child: Icon(Icons.add),
+                ),
+                FloatingActionButton(
+                  onPressed: () {
+                    if (items.length <= 1) return;
+                    noOfItems--;
+                    listKey.currentState!.removeItem(
+                      noOfItems,
+                      (_, animation) => _buildItem(context, 0, animation, x: 1),
+                      duration: Duration(milliseconds: 500),
+                    );
+                    setState(() {
+                      items.removeAt(0);
+                    });
+                  },
+                  child: Icon(Icons.remove),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+

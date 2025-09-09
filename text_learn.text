@@ -594,5 +594,48 @@ ONLY REPPLACE THE FINDVIEWBYiD
 
             STEP1>>>>>>>>>>>>>>>>>>
      binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+----------------------------------------------------------------------------------
+QUES:::: Easy way of json list
+
+import 'dart:convert';
+        void main() {
+          String response = '[{"id":1},{"id":2},{"id":3}]';
+
+          // Decode string → List<dynamic>
+          List<dynamic> jsonList = jsonDecode(response);
+
+          // Convert to List<MyModel>
+          List<MyModel> models = jsonList.map(
+          (json) {
+          return  MyModel.fromJson(json);
+          }
+          ).toList();
+
+          // Print values
+          for (var item in models) {
+            print(item.id);
+          }
+        }
+----------------------------------------------------------------------------------
+QUESS:::::
+
+       ✅ So, GridDelegate = the layout manager of GridView.
+        It decides:
+
+        Number of columns (or max width)
+
+        Spacing between items
+
+        Aspect ratio (shape)
+----------------------------------------------------------------------------------
+QUESS::::: In Flutter, Offset represents a 2D point (x, y) in the coordinate system.
+           Offset(x, y)
+
+
+          x → horizontal distance (positive = right, negative = left)
+
+          y → vertical distance (positive = down, negative = up)
  ----------------------------------------------------------------------------------
-QUES::::
+ QUESS:::::
+
+

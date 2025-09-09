@@ -1,0 +1,129 @@
+>>>>>  little code for tflite_flutter >>>>>>>>>>>>>>>>>>>>>>>.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+https://github.com/am15h/tflite_flutter_plugin  set up the tensor flow plugin by command intsall.bat -d
+Save the file as install.bat and put the file in root directory of your project.
+These scripts install pre-built binaries based on latest stable tensorflow release.
+ For info about using other tensorflow versions follow
+
+
+>>>>>>for blur check>>>>>>>>
+if image contain blur percentage more than 50 send to retake
+ image:
+
+<<<<<<<<<<<<<<resizePhoto(XFile fp)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+make app image size 720 720
+flutter_native_image
+
+<<<<<<<<<<<<<<compressSizeAndGetFile(String path, int quality)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+if the size in mb reduce or optimized it
+flutter_image_compress: ^2.2.0
+
+<<<<<<<<<<<<<<code main>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+1 Image classification /No programming required to train a model
+1.1 > open google teachable machine add class 1 class 2 name and add images and test everything
+2 export the model to TensorFlow Lite
+3 Download .tflite model + labels.txt
+4 Add model and labels to your Flutter app under assets/ and declare them in pubspec.yaml.  similar like add image 
+  assets:
+    - assets/model_keydetect.tflite
+    - assets/labelsss.txt
+5 import 'package:tflite_flutter/tflite_flutter.dart'; // To run .tflite model and to load the .tflite models
+import 'package:tflite_flutter_helper/tflite_flutter_helper.dart'; // To help with preprocessing like resizing
+6. camera package add for customization to camera hardware above like in stack we put msg and png image above whole camera preview
+7.   late Interpreter interpreter; // The TFLite interpreter to run the model
+  File? _image; // To store the picked image
+  String _result = "Pick an image"; // Output result to display on UI
+  late List<String> labels; // List of labels like ['Valid', 'Invalid']
+8.Future<void> loadModel() async {
+    interpreter = await Interpreter.fromAsset('model.tflite'); // Load the .tflite model from assets
+    labels = await FileUtil.loadLabels('assets/labels.txt'); // Load label list from text file
+  }
+
+9. // Step 3: Run the image through the model
+  Future<void> classifyImage(File imageFile) async {
+    // Load image file and convert it into TensorImage (helper class)
+    TensorImage tensorImage = TensorImage.fromFile(imageFile);
+
+    // Preprocess the image: resize to match model input size (e.g., 224x224)
+    final imageProcessor = ImageProcessorBuilder()
+        .add(ResizeOp(224, 224, ResizeMethod.BILINEAR)) // Resize image
+        .build();
+
+    tensorImage = imageProcessor.process(tensorImage); // Apply preprocessing
+
+    // Step 4: Prepare model input and output
+    // Input: ByteBuffer of processed image
+    var input = tensorImage.buffer;
+
+    // Output: a 2D array [1][2] to receive output (2 = "Valid" or "Invalid")
+    var output = List.filled(2, 0.0).reshape([1, 2]);
+
+    // Step 5: Run inference using the interpreter
+    interpreter.run(input, output); // input -> model -> output
+
+    // Step 6: Process the output to find the highest confidence class
+    final scoreList = output[0]; // Example: [0.9, 0.1]
+    int maxIndex = scoreList.indexWhere((e) => e == scoreList.reduce((a, b) => a > b ? a : b));
+
+    String predictedLabel = labels[maxIndex]; // Get label using index
+
+    // Step 7: Update UI with result
+    setState(() {
+      _result = "Prediction: $predictedLabel";
+    });
+  }
+
+10.  if index is 1, 2 and out put us 0.1 and 0.9 means 2 index is 90% true;
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+and check platform and use upgrader: pacakage for ios  / android  (For dialog is manage from store
+ listing in android and description in ios)
+
+ body: UpgradeAlert(
+    dialogStyle: UpgradeDialogStyle.cupertino,  // for ios like view and not give then android view 
+    child: Center(child: Text('Checking...')),
+  )
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+In-App Purchase i used for subscription based purchase in musioo app as normal flow that we make using api dont allow me to publish app on app store so i came up with this solution in app purchase.
+In-App Purchase we can do 
+non renewable subscriptions (monthly/yearly plans)
+
+-in_app_purchase: ^3.1.9 package add to pub sepec.yaml
+- Go to https://appstoreconnect.apple.com
+-Open ios/Runner.xcworkspace
+
+Go to Runner target → Signing & Capabilities
+
+Enable:
+
+In-App Purchase
+
+Background Modes > fetch & remote-notification
+Use Sandbox user for testing
+
+#Consumable
+>  Virtual goods, game currency ,coins
+
+#Non Consumable
+> Restorable
+>Remove ads, unlock features
+
+#Auto renewable subscriptions
+>Restorable
+>Auto-Renew
+
+#non renewable subscriptions
+>Restorable
+>Time-based access (fixed period)
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+Windows app make  using flutter : inno  setup screen for .dll file and .exe excutable like insataller file and desktop development C++ in msvs
+
+
+
