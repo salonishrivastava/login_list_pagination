@@ -26,9 +26,10 @@ Navigation – helps you switch between screens more easily.
 ✅ Updated regularly by Google
 
 
-------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
 #architecture
- Android development, architecture refers to the structure and design pattern you follow to organize your code, especially in large or scalable apps.
+ Android development, architecture refers to the structure and design pattern you follow to organize
+ your code, especially in large or scalable apps.
 
 
 The Most Recommended Architecture by Google (with Jetpack)
@@ -382,7 +383,8 @@ fun showScreen(state: ScreenState) {
         is ScreenState.Error -> println("Show error: ${state.message}")
     }
 }
-------------------------------------------------------------------------------------------------------------------------Coil  we can add network images
+------------------------------------------------------------------------------------------------------------------------
+Coil  we can add network images
 It’s a lightweight, fast, and modern image loading library built in Kotlin and designed to work great with Jetpack Compose and Coroutines.
 ------------------------------------------------------------------------------------------------------------------------
 

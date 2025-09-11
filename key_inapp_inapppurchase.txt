@@ -6,7 +6,7 @@ These scripts install pre-built binaries based on latest stable tensorflow relea
  For info about using other tensorflow versions follow
 
 
->>>>>>for blur check>>>>>>>>
+>>>>>>for blur check>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 if image contain blur percentage more than 50 send to retake
  image:
 
