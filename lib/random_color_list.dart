@@ -56,7 +56,8 @@ class MyStateClass extends State{
         },),
         body: AnimatedList(key: _listOfKey,initialItemCount: _listOfColors.length,
           itemBuilder: (context, index, animation) {
-            return SizeTransition(child: Container(
+            return SizeTransition(
+              child: Container(
                 color: _listOfColors[index],
                 height:45,
                 margin:EdgeInsets.all(1)

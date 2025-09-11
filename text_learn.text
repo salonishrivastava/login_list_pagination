@@ -636,6 +636,36 @@ QUESS::::: In Flutter, Offset represents a 2D point (x, y) in the coordinate sys
 
           y → vertical distance (positive = down, negative = up)
  ----------------------------------------------------------------------------------
- QUESS:::::
+QUESS::::: Map and openStreetMap and geoLocator
+ANS  :::::: Google Maps
+            Google provides an official Flutter plugin: google_maps_flutter
+            You need a Google Maps API key from the Google Cloud Console.
+            Limitation: Requires billing setup in Google Cloud.
 
 
+            OSM is free and open-source. for map
+            Map tiles (standard OSM, custom tiles, Mapbox, etc.).
+            Markers, clustering, polylines, polygons.
+            Offline map support (with cached tiles or MBTiles).
+            No API key, open-source, customizable.
+
+            Geolocator in Flutter
+            handles device GPS/location services.
+            It provides:
+            Current position (latitude, longitude).
+            Continuous location updates (streams).
+            Distance calculation between coordinates.
+ ----------------------------------------------------------------------------------
+ QUESS:::::Dependency Injection (DI)
+ DI is something hows work is to provide data or we can say object directly to classes without
+ creating class instance again and again it provide code reusability to overall app
+------------------------------------------------------------------------------------
+ QUESS::: Meaning of "Lazy"
+    In Flutter:
+    Lazy loading = widgets are created only when they are needed (visible).
+    Eager loading = all widgets are created upfront, whether visible or not.
+    So:
+    Column → Eager (not lazy).
+    ListView(children) → Eager (not lazy).
+    ListView.builder / ListView.separated → Lazy (recommended for large lists).
+------------------------------------------------------------------------------------

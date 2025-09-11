@@ -20,6 +20,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailEditingController= TextEditingController();
   TextEditingController passEditingController= TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -161,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
 
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                            return const ListGRID() ;
+                            return const ListGRID();
                           },));
 
 
