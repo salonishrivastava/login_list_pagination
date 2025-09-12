@@ -385,8 +385,15 @@ fun showScreen(state: ScreenState) {
 }
 ------------------------------------------------------------------------------------------------------------------------
 Coil  we can add network images
-It’s a lightweight, fast, and modern image loading library built in Kotlin and designed to work great with Jetpack Compose and Coroutines.
-------------------------------------------------------------------------------------------------------------------------
+It’s a lightweight, fast, and modern image loading library built in Kotlin and
+ designed to work great with Jetpack Compose and Coroutines.
+-----------------------------------------------------------------------------------------------------
+In Android:
+
+Use Cold Flow for data sources like API calls, DB queries.
+
+Use Hot Flow (StateFlow/SharedFlow) for UI states, events, and real-time updates.
+-------------------
 
 
 
