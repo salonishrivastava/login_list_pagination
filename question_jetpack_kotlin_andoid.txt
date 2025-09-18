@@ -1,54 +1,146 @@
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES :::::What are the main features of Kotlin?
+ANS  ::::::statically-typed programming language that runs on the JVM
+           1. Null safety
+           2. kotlin has Interoperability with Java >>Call Java code from Kotlin.
+
+                                        Call Kotlin code from Java.
+
+                                        Use all existing Java libraries, frameworks,
+                                         and tools directly in Kotlin without extra effort.
+           3. Coroutines for asynchronous programming
+           4. Smart casting
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES ::::: What is Smart Casting in Kotlin?
+ANS  :::::: Smart casting means that Kotlin automatically casts a variable to the
+correct type after a type check (like  if (obj is String))
+you don’t need to do explicit casting (like in Java).    String str = (String) obj; // Explicit cast required
 ----------------------------------------------------------------------------------
-QUES :::::
+QUES :::::Explain the difference between val and var in Kotlin.
+ANS  :::::: val is for read-only variables (immutable), meaning the reference cannot be changed after initialization.
+var is for mutable variables, allowing you to reassign values.
+----------------------------------------------------------------------------------------------------------------------
+QUES :::::What is the use of data class in Kotlin?
+ANS  ::::::A data class is used to hold data. Kotlin generates useful methods for data classes automatically, such as toString(), equals(), hashCode(), and copy().
+ It reduces boilerplate code when creating classes that only store data.
+----------------------------------------------------------------------------------------------------------------------
+QUES :::::What is the purpose of sealed class in Kotlin?
+ANS  ::::::A sealed class allows you to define a restricted class hierarchy,
+meaning all subclasses must be defined within the sealed class to use like error ,success , failed.
+ It is commonly used for modeling states or events (e.g., UI states or network responses).
+
+----------------------------------------------------------------------------------------------------------------------
+QUES :::::Explain the concept of extension functions in Kotlin.
+ANS  ::::::Extension functions allow you to add functionality to existing classes without modifying their source code
+fun Int.isEven(): Boolean {
+    return this % 2 == 0
+}
+
+fun main() {
+    println(4.isEven())  // true
+    println(7.isEven())  // false
+}
+
+or
+fun String.firstAndLast(): String {
+    return "${this.first()}...${this.last()}"
+}
+
+fun main() {
+    val name = "Kotlin"
+    println(name.firstAndLast())  // K...n
+}
+
+
+----------------------------------------------------------------------------------------------------------------------
+QUES :::::What are higher-order functions in Kotlin?
+ANS  ::::::Higher-order functions are functions that take another function as a parameter
+fun myCheck(t: Int, condition: (Int) -> Boolean): Boolean {
+    return condition(t)
+}
+
+
+----------------------------------------------------------------------------------------------------------------------
+QUES :::::Explain the concept of null safety in Kotlin.
+ANS  :::::: variable cant store null directly or we cant check null or print null
+but by using or check null using ? we print value if null without error
+var name: String? = null
+println(name?.length) // Safe call, returns null if name is null
+
+
+----------------------------------------------------------------------------------------------------------------------
+QUES :::::What is the purpose of lateinit in Kotlin?
+ANS  ::::::lateinit is used to delay the initialization of a non-null variable.
+It's commonly used for dependency injection or in situations where initialization cannot be done in the constructor.
+ late like flutter
+----------------------------------------------------------------------------------------------------------------------
+QUES :::::What is the difference between apply, with, run, and let in Kotlin?
 ANS  ::::::
-----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
-----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+<<<<<apply>>>>>>
+Return value: the object itself
+
+Use case: configure/initialize an object
+val person = Person().apply {
+    name = "Saloni"
+    age = 25
+}
+println(person)  // returns the Person object
+
+<<<<<with>>>>>> to perform multiple tasks before return a result
+val person = Person("Saloni", 25)
+val result = with(person) {
+    println(name)
+    println(age)
+    "Done"
+}
+println(result)  // Done
+Use case: when you already have an object and want to perform multiple operations on it
+
+
+<<<<<run>>>>>>
+Execute a block of code and return the result
+Combine object initialization + computation
+val greeting = Person("Saloni", 25).run {
+    "Hello, my name is $name and I'm $age"
+}
+println(greeting)
+
+
+<<<<<let>>>>>>
+Transform, null checks
+Transform the object into something else
+
+Commonly used for null-safety (?.let)
+val name: String? = "Kotlin"
+
+val length = name?.let {
+    println("Name is $it")
+    it.length
+}
+println(length)  // 6
+
 
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES :::::What is the use of companion object in Kotlin?
+ANS  ::::::A companion object allows you to define members (methods or variables) that are associated with the class,
+ rather than instances of the class. It’s similar to static members in Java.
 
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES :::::How does ViewModel differ from Presenter or Controller?
+ANS  ::::::ViewModel is designed to manage UI-related data and handle business
+logic in a lifecycle-aware manner. Unlike the Presenter or Controller,
+it is designed to survive configuration changes (e.g., screen rotations)
+ and isn't tightly bound to UI components.
 
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
-
-----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
-
-----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
-
-----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
-
-----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
-
-----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES ::::: What is Navigation Component in Jetpack?
+ANS  ::::::The Navigation Component simplifies navigation within an app.
+ It helps manage fragment transactions, passing data between destinations,
+and supports deep linking and handling of the back stack.
 
 
 ----------------------------------------------------------------------------------
-QUES :::::
+QUES :::::What is WorkManager in Jetpack?for background work.
 ANS  ::::::
 
 
