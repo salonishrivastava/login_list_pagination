@@ -393,7 +393,20 @@ In Android:
 Use Cold Flow for data sources like API calls, DB queries.
 
 Use Hot Flow (StateFlow/SharedFlow) for UI states, events, and real-time updates.
--------------------
+----------------------------------------------------------------------------------
+StateFlow
+
+A state holder: always has a current/latest value.
+
+Collectors immediately receive the latest value when they start observing.
+
+Suitable for representing UI state.
+
+Backed by a single updatable value (value property).
+Use StateFlow when you want to expose UI state to the UI layer (like ViewModel → Fragment).
+
+Use SharedFlow when you want to send one-off events (like navigation, error messages, snackbars).
+----------------------------------------------------------------------------------
 
 
 

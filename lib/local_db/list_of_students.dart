@@ -110,6 +110,8 @@ class _ListOfStudentsState extends State<ListOfStudents> {
             children: [
               Text(listOfStudents[index].id.toString()),
               Text(listOfStudents[index].name),
+
+
               Text(listOfStudents[index].age),
             ],
           ));

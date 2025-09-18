@@ -19,8 +19,8 @@ class _ListOfGridState extends State<ListGRID> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -68,7 +68,8 @@ class _ListOfGridState extends State<ListGRID> {
                          ]),
 
 
-                            child: Column(children: [
+                            child: Column(
+                              children: [
                               Text(post.id.toString()),
                               Text(post.title)
                             ],),

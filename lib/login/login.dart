@@ -124,7 +124,8 @@ class _LoginPageState extends State<LoginPage> {
 
 
                     },
-                      child: Container(width: 200,height: 55,
+                      child: Container(
+                        width: 200,height: 55,
                         alignment: Alignment.center,
                         child: Text("Database list add delete",
                           style: TextStyle(color: Colors.white,
@@ -145,7 +146,8 @@ class _LoginPageState extends State<LoginPage> {
 
 
                     },
-                      child: Container(width: 200,height: 55,
+                      child: Container(
+                        width: 200,height: 55,
                         alignment: Alignment.center,
                         child: Text("Animated List Example",
                           style: TextStyle(color: Colors.white,

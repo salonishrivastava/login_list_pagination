@@ -438,7 +438,7 @@ Ans ::::  Add Firebase to Your Flutter Project
 git show --summary
  QUES ::: how to remove reset commit that commited wrong
  Ans :::: git reset --hard aeb3753dce497cfb1cdf989dae9ebca0ae98caaa^
- your code will remove completly take back up before like zip
+ your code will remove completely take back up before like zip
 ---------------------------------------------------------------------------------------------
 In Git, the --force (or -f) flag means:
 👉 “push my local branch to the remote even if it will overwrite history there.”
