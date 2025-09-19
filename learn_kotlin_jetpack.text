@@ -169,6 +169,14 @@ val count = remember { mutableStateOf(0) }
 (prevent variables from resetting every time the UI updates.)
 -----------------------------------------------------------------------------------------------------------------------
 What is mutableStateOf and how does it help with state management?
+In Jetpack Compose, mutableStateOf is a special function that creates a state holder object. It is part of the State API in Compose, which makes UI automatically update when the state changes.
+Automatic UI updates → No need to manually refresh UI.
+
+Reactive programming style → UI reacts to data changes.
+
+Integration with remember → Keeps state across recompositions.
+
+Lightweight → Doesn’t need LiveData/Flow for simple UI state.
 -----------------------------------------------------------------------------------------------------------------------
 5. What is the difference between remember and rememberSaveable?
 remember keeps state during recomposition.
