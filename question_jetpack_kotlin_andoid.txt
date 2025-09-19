@@ -141,44 +141,113 @@ and supports deep linking and handling of the back stack.
 
 ----------------------------------------------------------------------------------
 QUES :::::What is WorkManager in Jetpack?for background work.
-ANS  ::::::
+ANS  ::::::WorkManager is an API for running deferrable, asynchronous tasks that are guaranteed to execute even if:
+
+           The app is killed,
+
+           The device restarts,
+
+           Or constraints (like charging, Wi-Fi) weren’t met initially.
+
+           It is the recommended solution for most persistent background tasks.
 
 
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES ::::: Let’s compare WorkManager vs Coroutines vs Services
+ANS  :::::: Use Coroutines for quick async jobs while app is alive.
+
+           Use WorkManager when the work must finish sometime, even after restarts.(e.g., upload, sync).guaranteed execution
+
+           Use Services for continuous or real-time work the user cares about (music, GPS).
 
 
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES ::::: What is DataBinding in Jetpack?
+ANS  ::::::in jetpack Compose, we don’t need DataBinding — reactivity is built-in.
+
+DataBinding is for XML-based Jetpack UI. we bind data directly to xml without calling
+ it from find view by id
+
+----------------------------------------------------------------------------------
+QUES :::::What is the Android application lifecycle?
+ANS  ::::::Activities: onCreate → onStart → onResume → onPause → onStop → onDestroy.
+
+           Fragments: onAttach → onCreateView → onViewCreated → onDestroyView.
+           Helps manage UI and resources efficiently.
 
 
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES :::::What are Android launch modes?
+ANS  ::::::standard, singleTop, singleTask, singleInstance.
+Launch mode is an instruction for Android OS which specifies how the activity should be launched.
+It instructs how any new activity should be associated with the current task.
+ Before moving further you first need to understand about very important topics-
+
+1. Tasks
+
+2. Back Stack
+
+https://medium.com/android-news/android-activity-launch-mode-e0df1aa72242
+----------------------------------------------------------------------------------
+QUES :::::What are PendingIntents?
+ANS  ::::::Token that grants permission to another app to execute code in your app’s context (used in Notifications, Alarms).
 
 
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES :::::Difference between Service and IntentService?
+ANS  ::::::Service: Runs on main thread → needs manual threading.
+
+           IntentService: Runs in background thread, stops automatically.
 
 
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES :::::What is DataStore in Android?
+ANS  ::::::Jetpack replacement for SharedPreferences.
 
 
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES :::::Difference between suspend fun and flow?
+ANS  ::::::suspend fun → executes once, returns a single result.
 
-
+           flow → emits multiple values over time (cold stream).
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES :::::What is lateinit vs lazy in Kotlin?
+ANS  ::::::lateinit: For non-null vars initialized later.
 
-
+           lazy: For vals, initialized only when accessed.
 ----------------------------------------------------------------------------------
-QUES :::::
-ANS  ::::::
+QUES :::::Difference between List, Set, Map in Kotlin?
+ANS  ::::::List: Ordered, allows duplicates.
+
+           Set: Unordered, unique elements.
+
+           Map: Key-value pairs.
+----------------------------------------------------------------------------------
+QUES :::::What is recomposition in Jetpack Compose?
+ANS  ::::::When state changes, only affected composables are redrawn, not entire UI
+----------------------------------------------------------------------------------
+QUES :::::How to manage state in Compose?
+ANS  ::::::Use mutableStateOf, remember, StateFlow, or ViewModel.
+----------------------------------------------------------------------------------
+QUES :::::Difference between Hilt and Dagger?
+ANS  ::::::Hilt: Opinionated DI for Android, simplifies Dagger setup.
+
+           Dagger: General-purpose DI, more boilerplate.
+----------------------------------------------------------------------------------
+QUES :::::What is Paging 3 in Android?
+ANS  ::::::Jetpack library for efficient data loading in pages (lists, infinite scroll).
+----------------------------------------------------------------------------------
+QUES :::::What is DiffUtil in RecyclerView?
+ANS  ::::::Efficiently calculates changes in lists, updates only changed items.
+----------------------------------------------------------------------------------
+QUES :::::How does WorkManager differ from AlarmManager or JobScheduler?
+ANS  ::::::WorkManager: Guaranteed, persistent jobs.
+
+           AlarmManager: Time-based jobs (not guaranteed if device reboots).
+
+           JobScheduler: Batch background jobs.
+----------------------------------------------------------------------------------
+
+
+
+
